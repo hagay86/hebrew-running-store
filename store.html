@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רץ על הגל — ציוד ספורט פרימיום</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;700;900&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #111;
+            --white: #fff;
+            --coral: #FF6B6B;
+            --dark-gray: #1a1a1a;
+            --light-gray: #f5f5f5;
+            --text-secondary: #666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ========== TOPBAR ========== */
+        .topbar {
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========== FLASH SALE BANNER ========== */
+        .flash-banner {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .flash-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmerSlide 3s infinite;
+        }
+
+        @keyframes shimmerSlide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .flash-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .flash-text {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .flash-timer {
+            font-size: 18px;
+            color: #FFD700;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        /* ========== STICKY NAV ========== */
+        nav.sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0);
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.sticky-nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--coral);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .nav-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--coral);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            nav.sticky-nav {
+                padding: 12px 15px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-logo {
+                font-size: 18px;
+            }
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 700px;
+            padding: 40px 20px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 18px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ========== MARQUEE ========== */
+        .marquee-section {
+            background: var(--black);
+            color: var(--white);
+            overflow: hidden;
+            padding: 30px 0;
+            white-space: nowrap;
+        }
+
+        .marquee {
+            display: inline-flex;
+            gap: 40px;
+            animation: scroll-left 30s linear infinite;
+            padding-right: 40px;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            min-width: max-content;
+        }
+
+        .marquee-dot {
+            opacity: 0.5;
+        }
+
+        /* ========== VIBE SECTION ========== */
+        .vibe-section {
+            padding: 80px 20px;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .vibe-scroll-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+
+        .vibe-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .vibe-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--black);
+            border-radius: 3px;
+        }
+
+        .video-card {
+            flex-shrink: 0;
+            width: 280px;
+            aspect-ratio: 9/16;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 15px;
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .video-username {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .video-caption {
+            font-size: 12px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .video-engagement {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .video-engagement svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+            font-size: 20px;
+        }
+
+        .video-card.paused .play-icon {
+            opacity: 1;
+        }
+
+        /* ========== CATEGORY CARDS — PHOTO-BASED ========== */
+        .categories-section {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .category-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+            color: var(--white);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-name {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .category-shop-btn {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover .category-shop-btn {
+            opacity: 1;
+        }
+
+        /* ========== PRODUCTS SECTION ========== */
+        .products-section {
+            padding: 80px 20px;
+            background: var(--light-gray);
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--black);
+            background: transparent;
+            color: var(--black);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+        }
+
+        @media (max-width: 1200px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr; }
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--coral);
+            color: white;
+            padding: 5px 11px;
+            border-radius: 18px;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .product-tag.new {
+            background: #111;
+        }
+
+        .product-like {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 2;
+            border: none;
+            padding: 0;
+        }
+
+        .product-like svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .product-like:hover {
+            background: var(--white);
+            transform: scale(1.1);
+        }
+
+        .product-like.liked {
+            color: var(--coral);
+        }
+
+        .product-info {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-brand {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .product-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .product-sizes {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .product-price {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .product-price-current {
+            font-size: 16px;
+            color: var(--black);
+        }
+
+        .product-price-old {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 11px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            width: calc(100% - 30px);
+        }
+
+        .product-card:hover .btn-add-cart {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-add-cart:hover {
+            background: var(--coral);
+        }
+
+        .load-more-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 14px 40px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .load-more-btn:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        /* ========== LOOKBOOK SECTION — MASONRY ========== */
+        .lookbook-section {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1300px;
+            margin: 0 auto;
+            auto-rows: 280px;
+        }
+
+        .lookbook-grid .lookbook-image:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .lookbook-grid .lookbook-image:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 1024px) {
+            .lookbook-grid {
+                grid-template-columns: repeat(3, 1fr);
+                auto-rows: 200px;
+            }
+            .lookbook-grid .lookbook-image:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lookbook-grid {
+                grid-template-columns: repeat(2, 1fr);
+                auto-rows: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lookbook-grid {
+                grid-template-columns: 1fr;
+                auto-rows: 200px;
+            }
+        }
+
+        .lookbook-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .lookbook-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.33, 0.66, 0.66, 1);
+        }
+
+        .lookbook-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .lookbook-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .lookbook-image:hover::before {
+            opacity: 1;
+        }
+
+        .lookbook-label {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.95);
+            color: var(--black);
+            padding: 10px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .lookbook-image:hover .lookbook-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== PROMO CARDS — IMAGE-BACKED ========== */
+        .promos-section {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+
+        .promos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .promos-grid { grid-template-columns: 1fr; }
+        }
+
+        .promo-card {
+            border-radius: 12px;
+            padding: 40px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .promo-card:hover::before {
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .promo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .promo-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0px;
+        }
+
+        .promo-subtitle {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .promo-btn {
+            align-self: flex-start;
+            padding: 11px 22px;
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .promo-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: var(--white);
+        }
+
+        /* ========== MANIFESTO SECTION ========== */
+        .manifesto-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 120px 40px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .manifesto-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1;
+        }
+
+        .manifesto-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.03) 0px,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .manifesto-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .manifesto-main {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .manifesto-sub {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 70px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.92);
+            font-weight: 300;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+
+        .stat {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--coral);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== MEETUPS SECTION ========== */
+        .meetups-section {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .meetups-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .meetups-grid { grid-template-columns: 1fr; }
+        }
+
+        .meetup-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .meetup-card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+
+        .meetup-banner {
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .meetup-content {
+            padding: 25px;
+        }
+
+        .meetup-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .meetup-detail svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .meetup-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .meetup-desc {
+            font-size: 13px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .participant-avatars {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 12px;
+        }
+
+        .avatar.a1 { background: var(--coral); }
+        .avatar.a2 { background: #4CAF50; }
+        .avatar.a3 { background: #2196F3; }
+        .avatar.a4 { background: #FF9800; }
+
+        .btn-join {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-join:hover {
+            background: var(--coral);
+        }
+
+        /* ========== INSTAGRAM SECTION ========== */
+        .instagram-section {
+            padding: 60px 0;
+            background: var(--light-gray);
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0;
+            max-width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .instagram-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .instagram-image:nth-child(2) { aspect-ratio: 0.9; }
+        .instagram-image:nth-child(3) { aspect-ratio: 1.1; }
+        .instagram-image:nth-child(5) { aspect-ratio: 1.15; }
+
+        .instagram-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .instagram-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .instagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            gap: 15px;
+        }
+
+        .instagram-image:hover .instagram-overlay {
+            opacity: 1;
+        }
+
+        .instagram-overlay-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .instagram-overlay-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* ========== CLUB SECTION ========== */
+        .club-section {
+            padding: 100px 20px;
+            background: var(--dark-gray);
+            position: relative;
+        }
+
+        .club-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.02) 0px,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            z-index: 0;
+        }
+
+        .club-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .club-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--white);
+        }
+
+        .club-header h2 {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .club-header p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .club-perks {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 50px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .club-perks { flex-direction: column; }
+        }
+
+        .club-perk {
+            flex-shrink: 0;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .club-perk-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .club-perk-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .club-perk-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .club-perk-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .club-signup {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 45px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 550px;
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .club-signup h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .club-signup p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 25px;
+        }
+
+        .club-signup-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .club-signup input {
+            flex: 1;
+            min-width: 200px;
+            padding: 13px 18px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Heebo', sans-serif;
+            color: var(--white);
+        }
+
+        .club-signup input:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .club-signup input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .btn-club {
+            padding: 13px 28px;
+            background: var(--coral);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-club:hover {
+            background: #ff5555;
+            transform: translateY(-2px);
+        }
+
+        .club-count {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 20px;
+        }
+
+        .club-count strong {
+            color: var(--coral);
+            font-weight: 700;
+        }
+
+        /* ========== NEWSLETTER — MERGED INTO DARK SECTION ========== */
+        .newsletter-section {
+            padding: 0;
+            background: transparent;
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+
+        .footer-column h3 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 11px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-logo {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .social-link:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .payment-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            padding: 0;
+        }
+
+        .back-to-top:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        /* ========== CART DRAWER ========== */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1900;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 400px;
+            background: var(--white);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1999;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .cart-drawer { width: 100%; }
+        }
+
+        .cart-drawer.active {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .cart-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cart-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--light-gray);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .cart-close:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-brand {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--light-gray);
+            background: var(--white);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--black);
+        }
+
+        .qty-display {
+            font-size: 13px;
+            font-weight: 600;
+            width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            color: var(--coral);
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-remove svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cart-item-remove:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--light-gray);
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-checkout:hover {
+            background: var(--coral);
+        }
+
+        /* ========== TOAST NOTIFICATION ========== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 8px;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            max-width: 90%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .toast.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 36px;
+            }
+            .manifesto-main {
+                font-size: 36px;
+            }
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            .filters {
+                gap: 8px;
+            }
+            .filter-btn {
+                padding: 7px 13px;
+                font-size: 12px;
+            }
+            .club-signup-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <script>
+        // DATA
+        const PRODUCTS = [
+            {id:1, name:"Nike Pegasus 42", brand:"Nike", price:649, old:799, img:"https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"sale", gender:"men", cat:"running", sub:"נעל ריצה קלאסית — מושלמת לכל יום"},
+            {id:2, name:"Hoka Speedgoat 6", brand:"Hoka", price:899, old:null, img:"https://images.pexels.com/photos/3261069/pexels-photo-3261069.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"new", gender:"women", cat:"hiking", sub:"שליטה מוחלטת בכל שטח"},
+            {id:3, name:"Wilson Pickleball Set", brand:"Wilson", price:349, old:449, img:"https://images.pexels.com/photos/5739181/pexels-photo-5739181.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"sale", gender:"men", cat:"pickleball", sub:"סט מקצועי — מחבט + כדורים"},
+            {id:4, name:"Head Paddle Pro", brand:"Head", price:1299, old:null, img:"https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"new", gender:"men", cat:"paddle", sub:"מחבט פאדל מקצועי — כוח ושליטה"},
+            {id:5, name:"ASICS Gel-Nimbus 27", brand:"ASICS", price:849, old:null, img:"https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"new", gender:"women", cat:"running", sub:"ריפוד מקסימלי לריצות ארוכות"},
+            {id:6, name:"Salomon X Ultra 4", brand:"Salomon", price:749, old:899, img:"https://images.pexels.com/photos/3261069/pexels-photo-3261069.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"sale", gender:"men", cat:"hiking", sub:"יציבות על כל משטח"},
+            {id:7, name:"Babolat Viper Air", brand:"Babolat", price:1149, old:null, img:"https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"new", gender:"women", cat:"paddle", sub:"מחבט אוויר — קל ומהיר"},
+            {id:8, name:"חולצת Dri-FIT Crop", brand:"Nike", price:189, old:249, img:"https://images.pexels.com/photos/6311387/pexels-photo-6311387.jpeg?auto=compress&cs=tinysrgb&w=400", tag:"sale", gender:"women", cat:"running", sub:"קרופ ספורטיבי — סטייל + ביצועים"},
+        ];
+
+        const VIBE_VIDEOS = [
+            {url:"https://videos.pexels.com/video-files/3209828/3209828-sd_506_960_25fps.mp4", user:"@maya_runs", caption:"ריצת בוקר על החוף", likes:"12.4K"},
+            {url:"https://videos.pexels.com/video-files/5485148/5485148-sd_506_960_25fps.mp4", user:"@daniel.fit", caption:"פיקלבול עם החבר'ה", likes:"8.1K"},
+            {url:"https://videos.pexels.com/video-files/4761437/4761437-sd_506_960_25fps.mp4", user:"@shira_outdoor", caption:"הייקינג ברמת הגולן", likes:"15.3K"},
+            {url:"https://videos.pexels.com/video-files/4057411/4057411-sd_540_960_25fps.mp4", user:"@team_wave", caption:"אימון פאדל בשקיעה", likes:"22.1K"},
+            {url:"https://videos.pexels.com/video-files/5319381/5319381-sd_506_960_25fps.mp4", user:"@yoni_pace", caption:"Long run Friday", likes:"9.7K"},
+            {url:"https://videos.pexels.com/video-files/4536860/4536860-sd_506_960_25fps.mp4", user:"@noa_vibes", caption:"פאדל + ברנץ' = חיים", likes:"18.5K"},
+        ];
+
+        const INSTAGRAM_IMAGES = [
+            "https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=400",
+            "https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=400",
+            "https://images.pexels.com/photos/3771836/pexels-photo-3771836.jpeg?auto=compress&cs=tinysrgb&w=400",
+            "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=400",
+            "https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=400",
+            "https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=400",
+        ];
+
+        // STATE
+        let cart = [];
+        let likes = new Set();
+        let activeFilter = 'all';
+        let activeGenderFilter = 'all';
+        let productsShown = 8;
+
+        // SVG ICONS
+        const SVG_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>';
+        const SVG_HEART_OUTLINE = '<svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+        const SVG_HEART_FILLED = '<svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+        const SVG_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"/></svg>';
+        const SVG_LOCATION = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+        const SVG_CALENDAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+
+        // INIT
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            initScrollReveal();
+            initNavScroll();
+            initFlashTimer();
+            initVideoCards();
+            initCategoryClicks();
+            initCartDrawer();
+            initStatCounters();
+        });
+
+        // FLASH TIMER
+        function initFlashTimer() {
+            const timerEl = document.querySelector('.flash-timer');
+            if (!timerEl) return;
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            const now = Date.now();
+            const flashEnd = now + (72 * 60 * 60 * 1000);
+            const remaining = Math.max(0, flashEnd - Date.now());
+            const hours = Math.floor(remaining / (1000 * 60 * 60));
+            const mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((remaining % (1000 * 60)) / 1000);
+            document.querySelector('.flash-timer').textContent = `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+        }
+
+        // NAV SCROLL
+        function initNavScroll() {
+            const nav = document.querySelector('.sticky-nav');
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        }
+
+        // PRODUCTS
+        function renderProducts() {
+            const container = document.getElementById('products-grid');
+            if (!container) return;
+
+            const filtered = PRODUCTS.filter(p => {
+                const catMatch = activeFilter === 'all' || p.cat === activeFilter;
+                const genderMatch = activeGenderFilter === 'all' || p.gender === activeGenderFilter;
+                return catMatch && genderMatch;
+            });
+
+            const displayed = filtered.slice(0, productsShown);
+
+            container.innerHTML = displayed.map(p => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${p.img}" alt="${p.name}">
+                        ${p.tag ? `<div class="product-tag ${p.tag === 'new' ? 'new' : ''}">${p.tag === 'sale' ? 'מבצע' : 'חדש'}</div>` : ''}
+                        <button class="product-like ${likes.has(p.id) ? 'liked' : ''}" onclick="toggleLike(${p.id})" style="border:none;background:none;cursor:pointer;">
+                            ${likes.has(p.id) ? SVG_HEART_FILLED : SVG_HEART_OUTLINE}
+                        </button>
+                        <button class="btn-add-cart" onclick="addToCart(${p.id})">הוסף לעגלה</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${p.brand}</div>
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-subtitle">${p.sub}</div>
+                        <div class="product-sizes">מידות: 36-48</div>
+                        <div class="product-price">
+                            <span class="product-price-current">₪${p.price}</span>
+                            ${p.old ? `<span class="product-price-old">₪${p.old}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            if (filtered.length > productsShown) {
+                const loadMore = document.createElement('button');
+                loadMore.className = 'load-more-btn';
+                loadMore.textContent = 'טען עוד';
+                loadMore.onclick = () => {
+                    productsShown += 8;
+                    renderProducts();
+                };
+                container.parentNode.appendChild(loadMore);
+            }
+
+            initScrollReveal();
+        }
+
+        function toggleLike(id) {
+            if (likes.has(id)) {
+                likes.delete(id);
+            } else {
+                likes.add(id);
+            }
+            renderProducts();
+        }
+
+        // FILTERS
+        function filterProducts(cat) {
+            activeFilter = cat;
+            productsShown = 8;
+            renderProducts();
+            updateFilterButtons();
+        }
+
+        function filterGender(gender) {
+            activeGenderFilter = gender;
+            productsShown = 8;
+            renderProducts();
+        }
+
+        function updateFilterButtons() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.cat === activeFilter) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // CART
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            const existing = cart.find(c => c.id === productId);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({...product, qty: 1});
+            }
+
+            updateCartBadge();
+            showToast(`${product.name} נוסף לעגלה`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(c => c.id !== productId);
+            updateCartBadge();
+            renderCartDrawer();
+        }
+
+        function updateQty(productId, change) {
+            const item = cart.find(c => c.id === productId);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) removeFromCart(productId);
+                else renderCartDrawer();
+            }
+        }
+
+        function updateCartBadge() {
+            const badge = document.querySelector('.cart-badge');
+            const total = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (badge) {
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'flex' : 'none';
+            }
+        }
+
+        function renderCartDrawer() {
+            const items = document.getElementById('cart-items');
+            if (!items) return;
+
+            items.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-image"><img src="${item.img}" alt="${item.name}"></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-brand">${item.brand}</div>
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₪${item.price * item.qty}</div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
+                            <span class="qty-display">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">${SVG_TRASH}</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-total').textContent = `₪${total}`;
+        }
+
+        function initCartDrawer() {
+            const cartIcon = document.querySelector('.nav-icon[onclick="toggleCart()"]');
+            const overlay = document.querySelector('.cart-overlay');
+            const closeBtn = document.querySelector('.cart-close');
+
+            if (cartIcon) cartIcon.addEventListener('click', toggleCart);
+            if (closeBtn) closeBtn.addEventListener('click', toggleCart);
+            if (overlay) overlay.addEventListener('click', toggleCart);
+        }
+
+        function toggleCart() {
+            document.querySelector('.cart-overlay').classList.toggle('active');
+            document.querySelector('.cart-drawer').classList.toggle('active');
+            renderCartDrawer();
+        }
+
+        // VIDEO CARDS
+        function initVideoCards() {
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const video = card.querySelector('video');
+                    card.classList.toggle('paused');
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            });
+        }
+
+        // CATEGORIES
+        function initCategoryClicks() {
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const catName = card.getAttribute('data-cat');
+                    const catMap = {
+                        'running': 'running',
+                        'hiking': 'hiking',
+                        'pickleball': 'pickleball',
+                        'paddle': 'paddle'
+                    };
+                    activeFilter = catMap[catName];
+                    activeGenderFilter = 'all';
+                    productsShown = 8;
+                    renderProducts();
+                    updateFilterButtons();
+                    document.querySelector('.products-section').scrollIntoView({behavior: 'smooth'});
+                });
+            });
+        }
+
+        // STAT COUNTERS
+        function initStatCounters() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const number = entry.target.querySelector('.stat-number');
+                        if (number && !number.classList.contains('animated')) {
+                            animateCounter(number);
+                            number.classList.add('animated');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.3});
+
+            document.querySelectorAll('.stat').forEach(stat => observer.observe(stat));
+        }
+
+        function animateCounter(element) {
+            const target = parseInt(element.textContent.replace(/\D/g, ''));
+            const duration = 2000;
+            const start = Date.now();
+
+            function update() {
+                const elapsed = Date.now() - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(target * progress);
+                element.textContent = current.toLocaleString() + (element.textContent.includes('+') ? '+' : '');
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            update();
+        }
+
+        // SCROLL REVEAL
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.1});
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // TOAST
+        function showToast(message) {
+            const existing = document.querySelector('.toast.active');
+            if (existing) existing.classList.remove('active');
+
+            let toast = document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+
+            toast.textContent = message;
+            toast.classList.add('active');
+
+            setTimeout(() => toast.classList.remove('active'), 3000);
+        }
+
+        // SMOOTH SCROLL NAV
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.target.textContent;
+                const map = {
+                    'חנות': '.products-section',
+                    'THE VIBE': '.vibe-section',
+                    'קהילה': '.club-section',
+                    'מבצעים': '.promos-section'
+                };
+                if (map[target]) {
+                    document.querySelector(map[target]).scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+
+        // CLUB & NEWSLETTER FORMS
+        document.querySelector('.club-signup-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            e.target.reset();
+            showToast('ברוכים הבאים למועדון!');
+        });
+
+        // BACK TO TOP
+        function backToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</head>
+<body>
+    <!-- TOPBAR -->
+    <div class="topbar">
+        משלוח חינם מעל ₪299 | החזרות 30 יום | NEW DROP כל שבוע
+    </div>
+
+    <!-- FLASH BANNER -->
+    <div class="flash-banner">
+        <div class="flash-content">
+            <div class="flash-text">FLASH SALE — עד 50% הנחה על כל האתר</div>
+            <div class="flash-timer">72:00:00</div>
+        </div>
+    </div>
+
+    <!-- STICKY NAV -->
+    <nav class="sticky-nav">
+        <div class="nav-logo">רץ על הגל</div>
+        <ul class="nav-links">
+            <li><a onclick="document.querySelector('.products-section').scrollIntoView({behavior: 'smooth'})">חנות</a></li>
+            <li><a>קטגוריות</a></li>
+            <li><a onclick="document.querySelector('.vibe-section').scrollIntoView({behavior: 'smooth'})">THE VIBE</a></li>
+            <li><a onclick="document.querySelector('.club-section').scrollIntoView({behavior: 'smooth'})">קהילה</a></li>
+            <li><a onclick="document.querySelector('.promos-section').scrollIntoView({behavior: 'smooth'})">מבצעים</a></li>
+        </ul>
+        <div class="nav-icons">
+            <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div class="nav-icon" onclick="toggleCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                <div class="cart-badge" style="display: none;">0</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <div class="hero-label">
+                <span class="pulse-dot"></span>
+                SS26 COLLECTION
+            </div>
+            <h1>תראו מדהים.<br>תרגישו חופשי.</h1>
+            <p>ציוד פרימיום לריצה, הייקינג, פיקלבול ופאדל — למי שלא מתפשרים על סטייל</p>
+            <div class="hero-ctas">
+                <button class="btn-primary" onclick="document.querySelector('.products-section').scrollIntoView({behavior: 'smooth'})">SHOP THE DROP</button>
+                <button class="btn-secondary" onclick="document.querySelector('.vibe-section').scrollIntoView({behavior: 'smooth'})">THE VIBE →</button>
+            </div>
+        </div>
+        <div class="scroll-arrow">↓</div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-item">Nike</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Hoka</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">ASICS</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Adidas</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">On Running</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Salomon</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Wilson</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Head</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Babolat</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Garmin</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Under Armour</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Brooks</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">The North Face</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Columbia</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Nike</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Hoka</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">ASICS</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Adidas</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">On Running</div>
+            <div class="marquee-dot">•</div>
+            <div class="marquee-item">Salomon</div>
+        </div>
+    </section>
+
+    <!-- VIBE SECTION -->
+    <section class="vibe-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">THE VIBE</h2>
+            <p class="section-subtitle">הקהילה הכי חמה ברשת</p>
+        </div>
+        <div class="vibe-scroll-container">
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/3209828/3209828-sd_506_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@maya_runs</div>
+                    <div class="video-caption">ריצת בוקר על החוף</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 12.4K</div>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/5485148/5485148-sd_506_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@daniel.fit</div>
+                    <div class="video-caption">פיקלבול עם החבר'ה</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 8.1K</div>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/4761437/4761437-sd_506_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@shira_outdoor</div>
+                    <div class="video-caption">הייקינג ברמת הגולן</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 15.3K</div>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/4057411/4057411-sd_540_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@team_wave</div>
+                    <div class="video-caption">אימון פאדל בשקיעה</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 22.1K</div>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/5319381/5319381-sd_506_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@yoni_pace</div>
+                    <div class="video-caption">Long run Friday</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 9.7K</div>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/4536860/4536860-sd_506_960_25fps.mp4" type="video/mp4"></video>
+                <div class="play-icon">▶</div>
+                <div class="video-card-overlay">
+                    <div class="video-username">@noa_vibes</div>
+                    <div class="video-caption">פאדל + ברנץ' = חיים</div>
+                    <div class="video-engagement"><svg viewBox="0 0 24 24" fill="#FF6B6B" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 18.5K</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES — PHOTO-BASED -->
+    <section class="categories-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">קטגוריות</h2>
+            <p class="section-subtitle">בחרו את הספורט שלכם</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card reveal" data-cat="running" style="background-image: url('https://images.pexels.com/photos/2404843/pexels-photo-2404843.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="category-content">
+                    <div class="category-name">ריצה</div>
+                    <div class="category-shop-btn">Shop Now →</div>
+                </div>
+            </div>
+            <div class="category-card reveal" data-cat="hiking" style="background-image: url('https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="category-content">
+                    <div class="category-name">הייקינג</div>
+                    <div class="category-shop-btn">Shop Now →</div>
+                </div>
+            </div>
+            <div class="category-card reveal" data-cat="pickleball" style="background-image: url('https://images.pexels.com/photos/8224729/pexels-photo-8224729.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="category-content">
+                    <div class="category-name">פיקלבול</div>
+                    <div class="category-shop-btn">Shop Now →</div>
+                </div>
+            </div>
+            <div class="category-card reveal" data-cat="paddle" style="background-image: url('https://images.pexels.com/photos/5739181/pexels-photo-5739181.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="category-content">
+                    <div class="category-name">פאדל</div>
+                    <div class="category-shop-btn">Shop Now →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">חנות</h2>
+            <p class="section-subtitle">הקולקשן הכי חדש</p>
+        </div>
+        <div class="filters">
+            <button class="filter-btn active" data-cat="all" onclick="filterProducts('all')">הכל</button>
+            <button class="filter-btn" data-cat="running" onclick="filterProducts('running')">ריצה</button>
+            <button class="filter-btn" data-cat="hiking" onclick="filterProducts('hiking')">הייקינג</button>
+            <button class="filter-btn" data-cat="pickleball" onclick="filterProducts('pickleball')">פיקלבול</button>
+            <button class="filter-btn" data-cat="paddle" onclick="filterProducts('paddle')">פאדל</button>
+        </div>
+        <div id="products-grid" class="products-grid"></div>
+    </section>
+
+    <!-- LOOKBOOK — MASONRY -->
+    <section class="lookbook-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Lookbook</h2>
+            <p class="section-subtitle">inspiring styles</p>
+        </div>
+        <div class="lookbook-grid reveal">
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/3771836/pexels-photo-3771836.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+            <div class="lookbook-image">
+                <img src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=600" alt="look">
+                <div class="lookbook-label">Shop This Look</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMOS — IMAGE-BACKED -->
+    <section class="promos-section">
+        <div class="section-header reveal" style="color: white; margin-bottom: 50px;">
+            <h2 class="section-title" style="color: white;">מבצעים</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">עשירות בעונה זו</p>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card reveal" style="background-image: url('https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="promo-card-content">
+                    <div class="promo-title">Summer Clearance</div>
+                    <div class="promo-subtitle">עד 40% הנחה על קולקשן הקיץ</div>
+                    <button class="promo-btn">קנו עכשיו</button>
+                </div>
+            </div>
+            <div class="promo-card reveal" style="background-image: url('https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="promo-card-content">
+                    <div class="promo-title">Pro Gear</div>
+                    <div class="promo-subtitle">ציוד מקצועי לאתלטים</div>
+                    <button class="promo-btn">חקרו</button>
+                </div>
+            </div>
+            <div class="promo-card reveal" style="background-image: url('https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                <div class="promo-card-content">
+                    <div class="promo-title">Bundle Deals</div>
+                    <div class="promo-subtitle">קנו 2 קבלו 1 בחינם</div>
+                    <button class="promo-btn">חקרו</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO — PARALLAX & ANIMATED COUNTERS -->
+    <section class="manifesto-section reveal" style="background-image: url('https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+        <div class="manifesto-content">
+            <div class="manifesto-main">
+                אנו מאמינים שהספורט הוא דרך חיים. כל צעד, כל נשימה, כל רגע חשוב.
+            </div>
+            <div class="manifesto-sub">
+                מ־1997, אנחנו משרתים אתלטים ומחפשי הרפתקאות בישראל בציוד שיהיה איתם בכל מסע.
+            </div>
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-number">500K+</span>
+                    <span class="stat-label">לקוחות מרוצים</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2500+</span>
+                    <span class="stat-label">מוצרים</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">27</span>
+                    <span class="stat-label">שנות ניסיון</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">שביעות רצון</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEETUPS -->
+    <section class="meetups-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Meetups</h2>
+            <p class="section-subtitle">הצטרפו לקהילה שלנו</p>
+        </div>
+        <div class="meetups-grid">
+            <div class="meetup-card reveal">
+                <div class="meetup-banner" style="background-image: url('https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                <div class="meetup-content">
+                    <div class="meetup-title">Morning Run — Ramat Hasharon</div>
+                    <div class="meetup-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        רמת השרון
+                    </div>
+                    <div class="meetup-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        כל בוקר 06:30
+                    </div>
+                    <div class="meetup-desc">ריצה חברתית בקצב עם חברים. פתוח לכל רמות.</div>
+                    <div class="participant-avatars">
+                        <div class="avatar a1">M</div>
+                        <div class="avatar a2">D</div>
+                        <div class="avatar a3">S</div>
+                        <div class="avatar a4">+42</div>
+                    </div>
+                    <button class="btn-join" onclick="joinMeetup('ריצה')">הצטרפו</button>
+                </div>
+            </div>
+            <div class="meetup-card reveal">
+                <div class="meetup-banner" style="background-image: url('https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                <div class="meetup-content">
+                    <div class="meetup-title">Hiking — Mount Hermon</div>
+                    <div class="meetup-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        הר חרמון
+                    </div>
+                    <div class="meetup-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        ימי שישי 08:00
+                    </div>
+                    <div class="meetup-desc">טיול הייקינג יומי עם נוף מדהים ותאים.</div>
+                    <div class="participant-avatars">
+                        <div class="avatar a1">R</div>
+                        <div class="avatar a2">N</div>
+                        <div class="avatar a3">G</div>
+                        <div class="avatar a4">+38</div>
+                    </div>
+                    <button class="btn-join" onclick="joinMeetup('הייקינג')">הצטרפו</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="instagram-section">
+        <div class="instagram-grid">
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/3771836/pexels-photo-3771836.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+            <div class="instagram-image">
+                <img src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=400" alt="ig">
+                <div class="instagram-overlay">
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                    <div class="instagram-overlay-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLUB — PREMIUM FEEL -->
+    <section class="club-section">
+        <div class="club-content">
+            <div class="club-header reveal">
+                <h2>רץ על הגל CLUB</h2>
+                <p>הצטרפו לחברות פרימיום ותקבלו הטבות בלעדיות</p>
+            </div>
+            <div class="club-perks reveal">
+                <div class="club-perk">
+                    <div class="club-perk-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                    <div class="club-perk-title">הנחות בלעדיות</div>
+                    <div class="club-perk-desc">עד 25% הנחה על כל הקניות</div>
+                </div>
+                <div class="club-perk">
+                    <div class="club-perk-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/><path d="M12 9v6m0 0l-3-3m3 3l3-3"/></svg></div>
+                    <div class="club-perk-title">משלוח חופשי</div>
+                    <div class="club-perk-desc">משלוח חופשי על כל הזמנה</div>
+                </div>
+                <div class="club-perk">
+                    <div class="club-perk-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+                    <div class="club-perk-title">Access VIP</div>
+                    <div class="club-perk-desc">הגנה ראשונה לקולקשנים חדשים</div>
+                </div>
+                <div class="club-perk">
+                    <div class="club-perk-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
+                    <div class="club-perk-title">דירוגים מיוחדים</div>
+                    <div class="club-perk-desc">חברים מיוחדים בכל יום</div>
+                </div>
+            </div>
+
+            <div class="club-signup reveal">
+                <h3>הצטרפו עכשיו</h3>
+                <p>קבלו גישה מיידית לכל ההטבות</p>
+                <form class="club-signup-form">
+                    <input type="email" placeholder="כתובת דוא״ל" required>
+                    <button type="submit" class="btn-club">הצטרפו</button>
+                </form>
+                <div class="club-count">
+                    <strong>24,847</strong> חברים — הצטרפו ל-1,000 הבאים
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">רץ על הגל</div>
+                <div class="footer-desc">
+                    ציוד ספורט פרימיום לאנשים שלא מתפשרים על איכות וסטייל. בנוי בישראל, לישראל.
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Instagram">f</a>
+                    <a href="#" class="social-link" title="TikTok">▶</a>
+                    <a href="#" class="social-link" title="Facebook">in</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>חנות</h3>
+                <ul>
+                    <li><a href="#">ריצה</a></li>
+                    <li><a href="#">הייקינג</a></li>
+                    <li><a href="#">פיקלבול</a></li>
+                    <li><a href="#">פאדל</a></li>
+                    <li><a href="#">חדש</a></li>
+                    <li><a href="#">מבצעים</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>קהילה</h3>
+                <ul>
+                    <li><a href="#">Meetups</a></li>
+                    <li><a href="#">The Vibe</a></li>
+                    <li><a href="#">CLUB</a></li>
+                    <li><a href="#">מדריכים</a></li>
+                    <li><a href="#">בלוג</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>ממלא מקום</h3>
+                <ul>
+                    <li><a href="#">בנוגע אלינו</a></li>
+                    <li><a href="#">צור קשר</a></li>
+                    <li><a href="#">תיקייה משפטית</a></li>
+                    <li><a href="#">מעקב זמנים</a></li>
+                    <li><a href="#">תמיכה</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                <strong>אמצעי תשלום:</strong>
+                <div class="payment-methods">
+                    <div class="payment-badge">Visa</div>
+                    <div class="payment-badge">Mastercard</div>
+                    <div class="payment-badge">Apple Pay</div>
+                    <div class="payment-badge">PayPal</div>
+                </div>
+            </div>
+            <span>&copy; 2024 רץ על הגל. כל הזכויות שמורות.</span>
+            <button class="back-to-top" onclick="backToTop()">↑</button>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER -->
+    <div class="cart-overlay"></div>
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h2>עגלת קניות</h2>
+            <button class="cart-close">×</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>סה״כ:</span>
+                <span id="cart-total">₪0</span>
+            </div>
+            <button class="btn-checkout">המשך לתשלום</button>
+        </div>
+    </div>
+
+    <div class="toast"></div>
+</body>
+</html>
